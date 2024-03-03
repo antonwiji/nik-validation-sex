@@ -1,10 +1,10 @@
-const getSex = (nik) => {
+const getDate = (nik) => {
     return nik.substring(6, 8)
   }
   
 const validationSex = (nik) => {
     
-    const getSexTemp = getSex(nik)
+    const getSexTemp = getDate(nik)
     if(getSexTemp >= 41) {
 
       return 'Perempuan'
