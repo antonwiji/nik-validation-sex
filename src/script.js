@@ -25,6 +25,11 @@ const onClickButton = () => {
     const nilaiB = parseInt(document.getElementById('nilaiB').value)
     const nilaiC = parseInt(document.getElementById('nilaiC').value)
 
+    if(!nilaiA || !nilaiB || !nilaiC) {
+      alert('Wajib Mengisi Semua Nilai')
+      return
+    }
+
     const nilaiAkar = PerhitunganKudrat(nilaiA, nilaiB, nilaiC)
 
     document.getElementById('alertResult').innerHTML = `<div class="alert alert-success" role="alert">
