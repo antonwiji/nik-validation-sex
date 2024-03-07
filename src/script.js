@@ -1,27 +1,33 @@
-const getDate = (nik) => {
-    return nik.substring(6, 8)
-  }
+const PerhitunganKudrat = (nilaiA, nilaiB, nilaiC) => {
   
-const validationSex = (nik) => {
-    
-    const getSexTemp = getDate(nik)
-    if(getSexTemp >= 41) {
+  const diskriminan = ((nilaiB * nilaiB) - (4 * nilaiA * nilaiC))
 
-      return 'Perempuan'
-    }
+  if(diskriminan > 0) {
+    const a = (-nilaiB + Math.sqrt(diskriminan)) / (2 * nilaiA)
+    const b = (-nilaiB - Math.sqrt(diskriminan)) / (2 * nilaiA)
 
-    return 'Laki - Laki '
+    return `Akar Persamaan adalah X1= ${a} sedangkan Nilai X2= ${b}`
   }
+  else if(diskriminan == 0) {
+    const nilai = -nilaiB / (2 * nilaiA)
+
+    return `Akar Persamaan adalah x = ${nilai}`
+  }else {
+    const realPart = -nilaiB / (2 * nilaiA)
+    const imaginaryPart = Math.sqrt(-diskriminan) / (2 * nilaiA)
+
+    return `Akar Persamaan adalah x1 = ${realPart} + ${imaginaryPart}i dan x2 = ${realPart} - ${imaginaryPart}i`
+  }
+}
 
 const onClickButton = () => {
-    const valueNik = document.getElementById('valueNik').value
+    const nilaiA = parseInt(document.getElementById('nilaiA').value)
+    const nilaiB = parseInt(document.getElementById('nilaiB').value)
+    const nilaiC = parseInt(document.getElementById('nilaiC').value)
 
-    const resultSex = validationSex(valueNik)
+    const nilaiAkar = PerhitunganKudrat(nilaiA, nilaiB, nilaiC)
 
-    if(valueNik.length >= 16 ){
-        document.getElementById('alertResult').innerHTML = `<div class="alert alert-success" role="alert">
-        Nik Dengan ${valueNik} Jenis Kelaminnya adalah <b>${resultSex}</b> 
-        </div>`
-    }
-
+    document.getElementById('alertResult').innerHTML = `<div class="alert alert-success" role="alert">
+    ${nilaiAkar}
+    </div>` 
 }
